@@ -1,4 +1,4 @@
-package com.seed.chopping;
+package com.seed.shopping;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
