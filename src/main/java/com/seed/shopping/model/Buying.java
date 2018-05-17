@@ -5,16 +5,29 @@
  */
 package com.seed.shopping.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author <a href="mailto:tiayo.pro@gmail.com">Ulrich TIAYO NGNINGAHE</a>
  */
-public class Buying {
+@Entity
+@SuppressWarnings("PersistenceUnitPresent")
+public class Buying implements Serializable {
 
+    @Id
+    @GeneratedValue
     private Integer id;
-    
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "buying_date", nullable = false)
     private Calendar date;
 
     private String provider;

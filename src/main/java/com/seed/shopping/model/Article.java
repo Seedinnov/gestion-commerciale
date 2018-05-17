@@ -5,20 +5,34 @@
  */
 package com.seed.shopping.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author <a href="mailto:tiayo.pro@gmail.com">Ulrich TIAYO NGNINGAHE</a>
  */
-public class Article {
+@Entity
+@SuppressWarnings("PersistenceUnitPresent")
+public class Article implements Serializable {
 
+    @Id
+    @GeneratedValue
     private Integer id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private Double buyingPrise;
 
+    @Column(nullable = false)
     private Double sellingPrise;
 
+    @Column(nullable = false)
     private Integer remainingQuantity = 0;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">

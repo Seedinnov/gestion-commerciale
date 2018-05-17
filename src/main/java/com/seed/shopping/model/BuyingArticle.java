@@ -5,16 +5,31 @@
  */
 package com.seed.shopping.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  *
  * @author <a href="mailto:tiayo.pro@gmail.com">Ulrich TIAYO NGNINGAHE</a>
  */
-public class BuyingArticle {
+@Entity
+@SuppressWarnings("PersistenceUnitPresent")
+public class BuyingArticle implements Serializable {
 
+    @Id
+    @GeneratedValue
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Buying buying;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Article article;
 
     private Integer quantity = 1;
