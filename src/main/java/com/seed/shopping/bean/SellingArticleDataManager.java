@@ -5,7 +5,11 @@
  */
 package com.seed.shopping.bean;
 
+import com.seed.shopping.model.Selling;
 import com.seed.shopping.model.SellingArticle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,6 +24,16 @@ public class SellingArticleDataManager extends AbstractDataManager<SellingArticl
     @Override
     protected synchronized void generateId(SellingArticle object) {
         object.setId(nextId++);
+    }
+
+    public List<SellingArticle> findArticlesByBuying(Selling selling) {
+        List<SellingArticle> result = new ArrayList<>();
+        for (SellingArticle s : objects) {
+            if (Objects.equals(s.getSelling().getId(), selling.getId())) {
+                result.add(s);
+            }
+        }
+        return result;
     }
 
 }
