@@ -8,7 +8,6 @@ import com.seed.shopping.model.SellingArticle;
 import com.seed.shopping.service.contract.ArticleService;
 import com.seed.shopping.service.contract.BuyingService;
 import com.seed.shopping.service.contract.SellingService;
-import com.seed.shopping.util.CustomResponseObject;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -45,16 +44,6 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-    }
-
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getAllDatas() {
-        CustomResponseObject response = new CustomResponseObject(
-                articleService.getAllArticles(),
-                buyingService.getAllBuyings(),
-                sellingService.getAllSellings());
-        return new ResponseEntity(response, HttpStatus.OK);
     }
 
     @ResponseBody
