@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 @ComponentScan(basePackages = {
+    "com.seed.shopping.config",
     "com.seed.shopping.bean",
     "com.seed.shopping.service.impl"
 })
@@ -36,7 +37,7 @@ public class Application {
     private SellingService sellingService;
     @Autowired
     private ArticleService articleService;
-    
+
     @Autowired
     private BuyingArticleDataManager buyingArticleDataManager;
     @Autowired
