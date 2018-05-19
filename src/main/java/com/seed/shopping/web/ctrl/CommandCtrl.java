@@ -8,11 +8,9 @@ package com.seed.shopping.web.ctrl;
 import com.seed.shopping.model.Article;
 import com.seed.shopping.model.BuyingArticle;
 import com.seed.shopping.service.contract.ArticleService;
-import com.seed.shopping.service.contract.BuyingService;
 import com.seed.shopping.web.input.BuyingInput;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,18 +33,7 @@ public class CommandCtrl {
     private final List<BuyingArticle> command = new ArrayList<>();
 
     @Autowired
-    private BuyingService buyingService;
-    @Autowired
     private ArticleService articleService;
-
-    @PostConstruct
-    private void initMockCommand() {
-        command.add(new BuyingArticle(null, articleService.findById(1), 3));
-        command.add(new BuyingArticle(null, articleService.findById(2), 5));
-        command.add(new BuyingArticle(null, articleService.findById(3), 1));
-        command.add(new BuyingArticle(null, articleService.findById(4), 4));
-        command.add(new BuyingArticle(null, articleService.findById(5), 60));
-    }
 
     @GetMapping("/commande")
     public String command(Model model) {
