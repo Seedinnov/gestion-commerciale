@@ -36,7 +36,6 @@ public class WebConfig {
     public SpringTemplateEngine templateEngine(ServletContextTemplateResolver templateResolver) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
-//        templateEngine.setTemplateEngineMessageSource(messageSource());
         return templateEngine;
     }
 

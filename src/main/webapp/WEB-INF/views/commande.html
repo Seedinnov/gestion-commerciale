@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport" />
+
+        <!-- CSS -->
+        <!-- Add Material font (Roboto) and Material icon as needed -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700"
+              rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+        <!-- Add Material CSS, replace Bootstrap CSS -->
+        <link href="/css/material.min.css" rel="stylesheet" />
+        <!-- personnal css -->
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+
+    <body>
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg bg-secondaire white-text">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">Navbar</a>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        <!-- main section -->
+        <main class="container">
+            <div class="row marge">
+                <div class="col-sm-12 col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="column">
+                                <h4 th:text="${#aggregates.sum(command.![quantity])}" class="font-weight-bold">3 produits</h4>
+                                <h4 th:text="${#aggregates.sum(command.![article.buyingPrise * quantity])} + ' frs'" class="font-weight-bold"></h4>
+                                <button class="btn-sm btn btn-success right" data-toggle="modal" data-target="#acheteurValideModal">valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="marge">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Noms produits</th>
+                            <th scope="col">prix unitaire</th>
+                            <th scope="col">Prix total</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item: ${command}">
+                            <th th:text="${item.quantity}" scope="row" />
+                            <td th:text="${item.article.name}" scope="row" />
+                            <td th:text="${item.article.buyingPrise}" scope="row" />
+                            <td th:text="${item.article.buyingPrise * item.quantity}" scope="row" />
+                            <td>
+                                <button class="btn btn-success">editer</button>
+                                <button class="btn btn-warning">supprimer</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="container-floating">
+                    <div id="floating-button" data-toggle="modal" data-target="#comModal">
+                        <p class="plus">
+                            <span class="">+</span>
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+            <!-- Modal -->
+            <div class="modal fade" id="acheteurValideModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Nom acheteur</h5>
+                            <button type="button" class="close" style="float:right" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Nom de l'acheteur
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- other modal commande -->
+            <div class="modal fade" id="comModal" tabindex="-1" role="dialog" aria-labelledby="comModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Commande</h5>
+                            <button type="button" class="close" style="float:right" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" th:action="@{/commande/ajout}" th:object="${buying}" method="POST">
+                                <div class="form-group">
+                                    <select th:field="*{articleId}" class="form-control">
+                                        <option value=""> Choix de l'article </option>
+                                        <option th:each="acl : ${articles}"
+                                                th:value="${acl.id}"
+                                                th:utext="${acl.name}"/>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control"
+                                           th:field="*{quantity}"
+                                           id="commandQty" placeholder="quantité" />
+                                </div>
+                                <div class="form-group">
+                                    <h3 class="font-weight-bold text-center">300 * 3: 900 frcfa</h3>
+                                </div>
+                                <div style="float:right;">
+                                    <button type="button" class="btn btn-outline-dark">Annuler</button>
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Ok</button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+        <script src="/js/material.min.js"></script>
+    </body>
+
+</html>

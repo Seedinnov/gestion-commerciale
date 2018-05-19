@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport" />
+
+        <!-- CSS -->
+        <!-- Add Material font (Roboto) and Material icon as needed -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700"
+              rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+        <!-- Add Material CSS, replace Bootstrap CSS -->
+        <link href="/css/material.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="http://glyphicons.com/" />
+        <!-- personnal css -->
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+
+    <body>
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg bg-secondaire white-text">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/">Navbar</a>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <!-- main section, with tables -->
+        <main>
+            <section class="couleur-fond1 marge">
+                <div class="container">
+                    <h3 class="">Ventes</h3>
+                    <hr />
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Date de commande</th>
+                                <th scope="col">Acheteur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="selling: ${sellings}">
+                                <th scope="row" th:text="${selling.id}"></th>
+                                <td th:text="${#dates.format(selling.date, 'dd-MM-yyyy HH:mm')}" />
+                                <td th:text="${selling.client}" />
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+            <section class="marge">
+                <div class="container">
+                    <h3 class="">Aticles</h3>
+                    <hr />
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Date de commande</th>
+                                <th scope="col">Fournisseur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="buying: ${buyings}">
+                                <th scope="row" th:text="${buying.id}"></th>
+                                <td th:text="${#dates.format(buying.date, 'dd-MM-yyyy HH:mm')}" />
+                                <td th:text="${buying.provider}" />
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+        <script src="/js/material.min.js"></script>
+    </body>
+
+</html>
