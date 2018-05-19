@@ -27,7 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
     "com.seed.shopping.config",
     "com.seed.shopping.web.config",
     "com.seed.shopping.bean",
-    "com.seed.shopping.service.impl"
+    "com.seed.shopping.service.impl",
+    "com.seed.shopping.web.ctrl"
 })
 public class Application {
 
