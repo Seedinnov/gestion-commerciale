@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @ComponentScan(basePackages = {
     "com.seed.shopping.config",
+    "com.seed.shopping.web.config",
     "com.seed.shopping.bean",
     "com.seed.shopping.service.impl"
 })
