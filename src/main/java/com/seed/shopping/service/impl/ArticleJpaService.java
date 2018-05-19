@@ -11,7 +11,6 @@ import com.seed.shopping.service.impl.logic.AbstractArticleService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
  * @author <a href="mailto:tiayo.pro@gmail.com">Ulrich TIAYO NGNINGAHE</a>
  */
 @Service
-@Primary
 public class ArticleJpaService extends AbstractArticleService {
 
     @Autowired
